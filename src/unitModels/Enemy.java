@@ -59,6 +59,10 @@ public class Enemy implements Ship {
 		return 0;
 	}
 	
+	public void stop(){
+		speed = 0;
+	}
+	
 	public void update(){
 		xPos = Math.max(0, xPos + speed);
 	}

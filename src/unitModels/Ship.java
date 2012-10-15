@@ -25,5 +25,7 @@ public interface Ship {
 	public int getSpeed();
 	
 	public void update();
+	
+	public void stop();
 
 }

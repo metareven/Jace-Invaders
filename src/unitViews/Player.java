@@ -11,6 +11,7 @@ public class Player implements Unit {
 	
 	private BufferedImage sprite;
 	
+	
 	public Player(){
 		
 		try {

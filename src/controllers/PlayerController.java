@@ -18,16 +18,18 @@ public class PlayerController implements KeyListener {
 		System.out.println(key);
 		
 		System.out.println("pressed key: " + key);
+		System.out.println("a".length());
+		System.out.println(key.length());
 		
-		if (key == "a"){
+		if (key.equals("a")){
 			//move to the left
 			player.moveLeft();
 		}
-		if (key == "d"){
+		if (key.equals("d")){
 			//move to the right
 			player.moveRight();
 		}
-		if (key == " "){
+		if (key.equals(" ")){
 			//shoot
 			player.fire();
 		}
@@ -38,7 +40,15 @@ public class PlayerController implements KeyListener {
 	}
 
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		String key = "" + ("" + arg0.getKeyChar()).toLowerCase();
+		if (key.equals("a")){
+			//move to the left
+			player.stop();
+		}
+		if (key.equals("d")){
+			//move to the right
+			player.stop();
+		}
 		
 	}
 

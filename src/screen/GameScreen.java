@@ -11,6 +11,7 @@ import controllers.PlayerController;
 
 import main.JaceInvaders;
 
+import unitModels.BulletModel;
 import unitModels.Ship;
 
 public class GameScreen extends JFrame{
@@ -45,7 +46,7 @@ public class GameScreen extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		gamePanel.setBackground(Color.black);
-		this.addKeyListener(new PlayerController(JaceInvaders.));
+		this.addKeyListener(new PlayerController(JaceInvaders.getPlayer()));
 		updater.start();
 	}
 
@@ -60,6 +61,10 @@ public class GameScreen extends JFrame{
 			for (Ship s : game.getShips()) {
 				g.drawImage(s.getSprite(), s.getXpos(),s.getYpos(), this);
 				s.update();
+			}
+			for (BulletModel b : BulletModel.getBullets()){
+				g.drawImage(b.getSprite(),b.getXpos(),b.getYpos(),this);
+				b.update();
 			}
 		}
 	}

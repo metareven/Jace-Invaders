@@ -30,7 +30,8 @@ public class Player implements Ship{
 	 * Causes the player to fire a bullet upwards
 	 */
 	public void fire() {
-		//create a bullet and fire it 
+		//create a bullet and fire it
+		new BulletModel(xPos , yPos);
 		
 	}
 	
@@ -47,7 +48,7 @@ public class Player implements Ship{
 	 * Moves the player "speed" pixles to the left
 	 */
 	public void moveLeft() {
-		  speed = -speedThreshold;
+		speed = -speedThreshold;
 		
 	}
 	
@@ -89,6 +90,10 @@ public class Player implements Ship{
 	
 	public int getSpeed(){
 		return speed;
+	}
+	
+	public void stop(){
+		speed = 0;
 	}
 	
 	public void update(){
