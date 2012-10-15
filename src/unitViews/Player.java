@@ -23,5 +23,13 @@ public class Player implements Unit {
 	public BufferedImage getSprite() {
 		return sprite;
 	}
+
+	public int getHeight() {
+	return sprite.getHeight();
+	}
+
+	public int getWidth() {
+		return sprite.getWidth();
+	}
 	
 }

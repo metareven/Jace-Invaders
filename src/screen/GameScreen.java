@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import main.JSpaceInvaders;
+import main.JaceInvaders;
 
 import unitModels.Ship;
 
@@ -15,10 +15,10 @@ public class GameScreen extends JFrame{
 
 	private ArrayList<Ship> ships;
 	private Thread painter;
-	private final JSpaceInvaders game;
+	private final JaceInvaders game;
 	private JPanel gamePanel;
 	
-	public GameScreen(final JSpaceInvaders game){
+	public GameScreen(final JaceInvaders game){
 		this.game = game;
 		this.gamePanel = new GamePanel();
 		ships = new ArrayList<Ship>();
@@ -29,7 +29,7 @@ public class GameScreen extends JFrame{
 				for(;;){
 					repaint();
 					try {
-						Thread.sleep(1000/game.getFPS());
+						Thread.sleep(1000/game.FPS);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -38,7 +38,7 @@ public class GameScreen extends JFrame{
 			}
 
 		});
-		setSize(800,600);
+		setSize(JaceInvaders.Width,JaceInvaders.Height);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);

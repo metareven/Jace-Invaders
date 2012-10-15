@@ -5,14 +5,22 @@ import java.awt.image.BufferedImage;
 
 public class Enemy implements Unit{
 
-	private BufferedImage Sprite;
+	private BufferedImage sprite;
 	
 	public Enemy(){
-		Sprite = new BufferedImage(28, 28, BufferedImage.TYPE_INT_RGB);
+		sprite = new BufferedImage(28, 28, BufferedImage.TYPE_INT_RGB);
 		
 	}
 
 	public BufferedImage getSprite() {
-		return Sprite;
+		return sprite;
+	}
+
+	public int getHeight() {
+		return sprite.getHeight();
+	}
+
+	public int getWidth() {
+		return sprite.getWidth();
 	}
 }

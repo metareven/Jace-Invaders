@@ -7,7 +7,9 @@ public interface Unit {
 	
 	public BufferedImage getSprite();
 	
+	public int getHeight();
 	
+	public int getWidth();
 	
 	
 }

@@ -2,6 +2,8 @@ package unitModels;
 
 import java.awt.Image;
 
+import main.JaceInvaders;
+
 import controllers.PlayerController;
 import unitViews.Unit;
 
@@ -15,12 +17,11 @@ public class Player implements Ship{
 	private int lives;
 	
 	public Player(){
-		System.out.println("creating a player");
-		this.xPos = 1;
-		this.yPos = 2;
+		this.sprite = new unitViews.Player();
+		this.xPos = (JaceInvaders.Width - sprite.getWidth()) / 2;
+		this.yPos = JaceInvaders.Height - sprite.getHeight() - 50;
 		this.lives = 3;
 		this.speed = 4;
-		this.sprite = new unitViews.Player();
 		
 	}
 	
@@ -78,12 +79,12 @@ public class Player implements Ship{
 	}
 
 	public void setXpos(int x) {
-		// TODO Auto-generated method stub
+		this.xPos = x;
 		
 	}
 
 	public void setYpos(int y) {
-		// TODO Auto-generated method stub
+		this.yPos = y;
 		
 	}
 	
