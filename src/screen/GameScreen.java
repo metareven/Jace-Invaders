@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controllers.PlayerController;
+
 import main.JaceInvaders;
 
 import unitModels.Ship;
@@ -14,7 +16,7 @@ import unitModels.Ship;
 public class GameScreen extends JFrame{
 
 	private ArrayList<Ship> ships;
-	private Thread painter;
+	private Thread updater;
 	private final JaceInvaders game;
 	private JPanel gamePanel;
 	
@@ -23,7 +25,7 @@ public class GameScreen extends JFrame{
 		this.gamePanel = new GamePanel();
 		ships = new ArrayList<Ship>();
 		add(gamePanel);
-		painter = new Thread(new Runnable(){
+		updater = new Thread(new Runnable(){
 
 			public void run() {
 				for(;;){
@@ -43,7 +45,8 @@ public class GameScreen extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		gamePanel.setBackground(Color.black);
-		painter.start();
+		this.addKeyListener(new PlayerController());
+		updater.start();
 	}
 
 
@@ -53,9 +56,10 @@ public class GameScreen extends JFrame{
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			//paint all the objects
+			//update the positions and draw each object
 			for (Ship s : game.getShips()) {
 				g.drawImage(s.getSprite(), s.getXpos(),s.getYpos(), this);
+				s.update();
 			}
 		}
 	}

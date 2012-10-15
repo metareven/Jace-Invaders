@@ -15,13 +15,14 @@ public class Player implements Ship{
 	private int yPos;
 	private int speed;
 	private int lives;
+	private int speedThreshold = 5;
 	
 	public Player(){
 		this.sprite = new unitViews.Player();
 		this.xPos = (JaceInvaders.Width - sprite.getWidth()) / 2;
 		this.yPos = JaceInvaders.Height - sprite.getHeight() - 50;
 		this.lives = 3;
-		this.speed = 4;
+		this.speed = 0;
 		
 	}
 	
@@ -46,7 +47,7 @@ public class Player implements Ship{
 	 * Moves the player "speed" pixles to the left
 	 */
 	public void moveLeft() {
-		  xPos =  Math.max(0, xPos - speed);
+		  speed = -speedThreshold;
 		
 	}
 	
@@ -54,7 +55,7 @@ public class Player implements Ship{
 	 * Moves the player "speed" pixles to the right
 	 */
 	public void moveRight() {
-		xPos = Math.max(1000, xPos + speed);
+		speed = speedThreshold;
 		
 	}
 	
@@ -62,7 +63,6 @@ public class Player implements Ship{
 	 * Returns the player's position on the x-axis
 	 */
 	public int getXpos() {
-		// TODO Auto-generated method stub
 		return xPos;
 	}
 
@@ -74,7 +74,6 @@ public class Player implements Ship{
 	}
 
 	public Image getSprite() {
-		// TODO Auto-generated method stub
 		return this.sprite.getSprite();
 	}
 
@@ -86,6 +85,14 @@ public class Player implements Ship{
 	public void setYpos(int y) {
 		this.yPos = y;
 		
+	}
+	
+	public int getSpeed(){
+		return speed;
+	}
+	
+	public void update(){
+		xPos = Math.max(0, xPos + speed);
 	}
 	
 	

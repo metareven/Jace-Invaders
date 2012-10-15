@@ -9,9 +9,13 @@ public class PlayerController implements KeyListener {
 	
 	private Ship player;
 	
+	public PlayerController(Ship player){
+		this.player = player;
+	}
+	
 	public void keyPressed(KeyEvent arg0) {
 		String key = ("" + arg0.getKeyChar()).toLowerCase();
-		
+		System.out.println(key);
 		
 		System.out.println("pressed key: " + key);
 		

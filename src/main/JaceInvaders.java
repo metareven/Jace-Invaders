@@ -25,6 +25,8 @@ public class JaceInvaders {
 	
 	private static JaceInvaders game;
 	
+	private static Ship player;
+	
 	public static void main(String[] args) {
 		
 		game = new JaceInvaders();
@@ -32,8 +34,9 @@ public class JaceInvaders {
 	}
 	
 	public JaceInvaders() {
+		player = new Player();
 		ships = new ArrayList<Ship>();
-		ships.add(new Player());
+		ships.add(player);
 	}
 	
 	/**
@@ -47,5 +50,9 @@ public class JaceInvaders {
 	
 	public ArrayList<Ship> getShips(){
 		return ships;
+	}
+	
+	public static Ship getPlayer(){
+		return player;
 	}
 }

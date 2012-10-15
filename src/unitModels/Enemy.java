@@ -3,6 +3,10 @@ package unitModels;
 import java.awt.Image;
 
 public class Enemy implements Ship {
+	
+	private int xPos;
+	private int yPos;
+	private int speed;
 
 	public int getXpos() {
 		// TODO Auto-generated method stub
@@ -49,6 +53,14 @@ public class Enemy implements Ship {
 	public void setXpos(int x) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public int getSpeed(){
+		return 0;
+	}
+	
+	public void update(){
+		xPos = Math.max(0, xPos + speed);
 	}
 
 }
