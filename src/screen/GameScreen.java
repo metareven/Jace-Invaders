@@ -45,7 +45,7 @@ public class GameScreen extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		gamePanel.setBackground(Color.black);
-		this.addKeyListener(new PlayerController());
+		this.addKeyListener(new PlayerController(JaceInvaders.));
 		updater.start();
 	}
 
