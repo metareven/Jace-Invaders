@@ -5,21 +5,31 @@ import java.awt.event.KeyListener;
 
 import unitModels.*;
 
+/**
+ * A KeyListener that listens to input from the keyboard that is used to control the player
+ * in JaceInvaders
+ * @author Metareven
+ *
+ */
+
+
 public class PlayerController implements KeyListener {
 	
-	private Ship player;
+	//the player object that this controller controls
+	private Player player;
 	
-	public PlayerController(Ship player){
+	
+	public PlayerController(Player player){
 		this.player = player;
 	}
 	
 	public void keyPressed(KeyEvent arg0) {
-		String key = ("" + arg0.getKeyChar()).toLowerCase();
-		System.out.println(key);
 		
-		System.out.println("pressed key: " + key);
-		System.out.println("a".length());
-		System.out.println(key.length());
+		//the controller should not do anything when the player is dead
+		if(player.getLives() <= 0){
+			return;
+		}
+		String key = ("" + arg0.getKeyChar()).toLowerCase();
 		
 		if (key.equals("a")){
 			//move to the left
@@ -53,8 +63,7 @@ public class PlayerController implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		//do nothing
 	}
 
 }

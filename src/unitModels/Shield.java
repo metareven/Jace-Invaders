@@ -5,7 +5,11 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 
-
+/**
+ * Shields that break down on impact
+ * @author Metareven
+ *
+ */
 public class Shield extends SpaceObject {
 
 	private int xPos;
@@ -15,7 +19,11 @@ public class Shield extends SpaceObject {
 	private int size = 5;
 	private boolean[][] remaining;
 	
-	
+	/**
+	 * creates a shield
+	 * @param xPos the position of the shield on the x axis
+	 * @param yPos the position of the shield on the y axis
+	 */
 	public Shield(int xPos,int yPos){
 		this.xPos = xPos;
 		this.yPos = yPos;
@@ -28,6 +36,10 @@ public class Shield extends SpaceObject {
 		}
 	}
 	
+	/**
+	 * draws the shield 
+	 * @param g the graphics the shield is to be displayed on
+	 */
 	public void drawShield(Graphics g){
 		
 		for(int x=0;x < remaining.length; x++){

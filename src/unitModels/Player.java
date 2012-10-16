@@ -19,10 +19,13 @@ public class Player extends Ship{
 	private int speedThreshold = 5;
 	private ArrayList<BulletModel> bullets;
 	
+	/**
+	 * creates a new player
+	 */
 	public Player(){
 		this.sprite = new unitViews.Player();
 		this.xPos = (JaceInvaders.Width - sprite.getWidth()) / 2;
-		this.yPos = JaceInvaders.Height - sprite.getHeight() *2;
+		this.yPos = JaceInvaders.Height - 100;
 		this.lives = 3;
 		this.speed = 0;
 		bullets = new ArrayList<BulletModel>();
@@ -45,6 +48,9 @@ public class Player extends Ship{
 		//take damage
 		lives = lives -1;
 		System.out.println("player was killed");
+		if (lives <= 0){
+			getDeadShips().add(this);
+		}
 		
 	}
 
@@ -121,6 +127,10 @@ public class Player extends Ship{
 		
 	}
 	
+	/**
+	 * 
+	 * @return the number of lives the player has left
+	 */
 	public int getLives(){
 		return lives;
 	}

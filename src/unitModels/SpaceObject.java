@@ -4,22 +4,56 @@ import java.awt.Rectangle;
 
 public abstract class SpaceObject {
 	
+	/**
+	 * fetches the position of the object on the x axis
+	 * @return the x coordinate of the object
+	 */
 	public abstract int getXpos();
 	
+	/**
+	 * fetches the position of the object on the y axis
+	 * @return the y coordinate of the object
+	 */
 	public abstract int getYpos();
 	
+	/**
+	 * Method that handles taking damage.
+	 */
 	public abstract void takeDamage();
 	
+	/**
+	 * sets the x position of the object
+	 * @param x the new x coordinate of the object
+	 */
 	public abstract void setXpos(int x);
 	
+	/**
+	 * sets the y position of the object
+	 * @param y the new y coordinate of the object
+	 */
 	public abstract void setYpos(int y);
 	
+	/**
+	 * updates the objects coordinates and state
+	 */
 	public abstract void update();
 	
+	/**
+	 * 
+	 * @return the width of the object
+	 */
 	public abstract int getWidth();
 	
+	/**
+	 * 
+	 * @return the height of the object
+	 */
 	public abstract int getHeight();
 	
+	/**
+	 * method that is to be called when colliding with an object
+	 * @param x the object you have collided with
+	 */
 	public abstract void collisionReaction(SpaceObject x);
 	
 
