@@ -2,26 +2,37 @@ package unitModels;
 
 import java.awt.Image;
 
+import main.JaceInvaders;
+
+import unitViews.Unit;
+
 public class Enemy implements Ship {
 	
 	private int xPos;
 	private int yPos;
-	private int speed;
+	private static int speed = 2;
+	private static int displacement = 0;
+	private int speedThreshold = 2;
+	private Unit sprite;
+	
 
+	public Enemy(){
+		this.sprite = new unitViews.Enemy();
+		this.xPos = 0;
+		this.yPos = 0;
+	}
+	
 	public int getXpos() {
-		// TODO Auto-generated method stub
-		return 0;
+		return xPos;
 	}
 	
 
 	public int getYpos() {
-		// TODO Auto-generated method stub
-		return 0;
+		return yPos + (sprite.getHeight() * displacement);
 	}
 
-	public Image getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+	public Unit getView() {
+		return this.sprite;
 	}
 
 	public void fire() {
@@ -35,28 +46,28 @@ public class Enemy implements Ship {
 	}
 
 	public void moveLeft() {
-		// TODO Auto-generated method stub
+		speed = -speedThreshold;
 		
 	}
 
 	public void moveRight() {
-		// TODO Auto-generated method stub
+		speed = speedThreshold;
 		
 	}
 
 	public void setYpos(int y) {
-		// TODO Auto-generated method stub
-		
+		yPos = y;
 	}
 
 
 	public void setXpos(int x) {
-		// TODO Auto-generated method stub
+		this.xPos = x;
+		System.out.println(xPos);
 		
 	}
 	
 	public int getSpeed(){
-		return 0;
+		return speed;
 	}
 	
 	public void stop(){
@@ -64,7 +75,20 @@ public class Enemy implements Ship {
 	}
 	
 	public void update(){
-		xPos = Math.max(0, xPos + speed);
+		xPos = xPos + speed;
+		
+		
+		if(xPos < 0 || xPos + sprite.getWidth() > JaceInvaders.Width){
+			speed = speed * -1;
+			displacement++;
+			
+		}
 	}
+
+	public boolean collision(SpaceObject a, SpaceObject b) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }

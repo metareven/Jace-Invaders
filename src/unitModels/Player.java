@@ -1,6 +1,7 @@
 package unitModels;
 
 import java.awt.Image;
+import java.util.ArrayList;
 
 import main.JaceInvaders;
 
@@ -16,6 +17,7 @@ public class Player implements Ship{
 	private int speed;
 	private int lives;
 	private int speedThreshold = 5;
+	private ArrayList<BulletModel> bullets;
 	
 	public Player(){
 		this.sprite = new unitViews.Player();
@@ -23,6 +25,7 @@ public class Player implements Ship{
 		this.yPos = JaceInvaders.Height - sprite.getHeight() - 50;
 		this.lives = 3;
 		this.speed = 0;
+		bullets = new ArrayList<BulletModel>();
 		
 	}
 	
@@ -31,7 +34,7 @@ public class Player implements Ship{
 	 */
 	public void fire() {
 		//create a bullet and fire it
-		new BulletModel(xPos , yPos);
+		 new BulletModel(this);
 		
 	}
 	
@@ -74,8 +77,8 @@ public class Player implements Ship{
 		return yPos;
 	}
 
-	public Image getSprite() {
-		return this.sprite.getSprite();
+	public Unit getView() {
+		return this.sprite;
 	}
 
 	public void setXpos(int x) {
@@ -99,6 +102,13 @@ public class Player implements Ship{
 	public void update(){
 		xPos = Math.max(0, xPos + speed);
 	}
+
+	public boolean collision(SpaceObject a, SpaceObject b) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 	
 	
 }

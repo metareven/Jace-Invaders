@@ -2,6 +2,8 @@ package main;
 
 import java.util.ArrayList;
 
+import factories.EnemyFactory;
+
 import screen.GameScreen;
 import unitModels.Player;
 import unitModels.Ship;
@@ -37,6 +39,10 @@ public class JaceInvaders {
 		player = new Player();
 		ships = new ArrayList<Ship>();
 		ships.add(player);
+		EnemyFactory factory = new EnemyFactory(11 * 5);
+		while(factory.hasNext()){
+			ships.add(factory.getNext());
+		}
 	}
 	
 	/**
