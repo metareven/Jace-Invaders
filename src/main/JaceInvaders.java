@@ -25,9 +25,9 @@ public class JaceInvaders {
 	
 	private GameScreen gameScreen;
 	
-	private static JaceInvaders game;
+	public static JaceInvaders game;
 	
-	private static Ship player;
+	public static Ship player;
 	
 	public static void main(String[] args) {
 		
@@ -50,6 +50,21 @@ public class JaceInvaders {
 	 */
 	public void start(){
 		gameScreen = new GameScreen(this);
+	}
+	
+	/**
+	 * Starts a new level
+	 * @param i : The number of the new level. The higher the number the faster the enemies move
+	 */
+	public void newLevel(int i){
+		
+		ships = new ArrayList<Ship>();
+		ships.add(player);
+		EnemyFactory factory = new EnemyFactory(11 * 5);
+		while(factory.hasNext()){
+			ships.add(factory.getNext());
+		}
+		unitModels.Enemy.speed = i;
 	}
 	
 

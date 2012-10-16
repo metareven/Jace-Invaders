@@ -1,20 +1,20 @@
 package unitModels;
 
 import java.awt.Image;
+import java.util.ArrayList;
 
 import main.JaceInvaders;
 
 import unitViews.Unit;
 
-public class Enemy implements Ship {
+public class Enemy extends Ship {
 	
 	private int xPos;
 	private int yPos;
-	private static int speed = 2;
+	public static int speed = 1;
 	private static int displacement = 0;
 	private int speedThreshold = 2;
 	private Unit sprite;
-	
 
 	public Enemy(){
 		this.sprite = new unitViews.Enemy();
@@ -36,13 +36,11 @@ public class Enemy implements Ship {
 	}
 
 	public void fire() {
-		// TODO Auto-generated method stub
-		
+		new EnemyBullet(this);
 	}
 
 	public void takeDamage() {
-		// TODO Auto-generated method stub
-		
+		getDeadShips().add(this);
 	}
 
 	public void moveLeft() {
@@ -77,17 +75,41 @@ public class Enemy implements Ship {
 	public void update(){
 		xPos = xPos + speed;
 		
+		if (Math.random() > 0.999){
+			
+			fire();
+		}
 		
 		if(xPos < 0 || xPos + sprite.getWidth() > JaceInvaders.Width){
 			speed = speed * -1;
 			displacement++;
 			
 		}
+		
+		if(getYpos() + getHeight() * 2 > JaceInvaders.Height){
+			getDeadShips().addAll(JaceInvaders.game.getShips().subList(1, JaceInvaders.game.getShips().size()-1));
+			displacement = 0;
+		}
 	}
 
 	public boolean collision(SpaceObject a, SpaceObject b) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int getWidth() {
+		return sprite.getWidth();
+	}
+
+	@Override
+	public int getHeight() {
+		return sprite.getHeight();
+	}
+
+	@Override
+	public void collisionReaction(SpaceObject x) {
+		takeDamage();
 	}
 
 

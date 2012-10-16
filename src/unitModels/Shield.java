@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 
 
-public class Shield implements SpaceObject {
+public class Shield extends SpaceObject {
 
 	private int xPos;
 	private int yPos;
@@ -64,9 +64,23 @@ public class Shield implements SpaceObject {
 		
 	}
 
-	public boolean collision(SpaceObject a, SpaceObject b) {
+
+	@Override
+	public int getWidth() {
 		// TODO Auto-generated method stub
-		return false;
+		return 0;
+	}
+
+	@Override
+	public int getHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void collisionReaction(SpaceObject x) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

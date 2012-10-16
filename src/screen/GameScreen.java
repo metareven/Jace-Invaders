@@ -12,6 +12,7 @@ import controllers.PlayerController;
 import main.JaceInvaders;
 
 import unitModels.BulletModel;
+import unitModels.Enemy;
 import unitModels.Shield;
 import unitModels.Ship;
 
@@ -55,11 +56,25 @@ public class GameScreen extends JFrame{
 
 
 	class GamePanel extends JPanel{
-		private Shield test = new Shield(100,100);
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			//update the positions and draw each object
+			
+			for (Ship s : game.getShips()){
+				for( BulletModel b : BulletModel.getBullets()){
+					if (b.collision(s)){
+						b.collisionReaction(s);
+						s.collisionReaction(b);
+					}
+				}
+			}
+			
+			game.getShips().removeAll(Enemy.getDeadShips());
+			Enemy.getDeadShips().clear();
+			BulletModel.getBullets().removeAll(BulletModel.getDeadBullets());
+			BulletModel.getDeadBullets().clear();
+			
 			for (Ship s : game.getShips()) {
 				g.drawImage(s.getView().getSprite(), s.getXpos(),s.getYpos(), this);
 				s.update();
@@ -68,7 +83,14 @@ public class GameScreen extends JFrame{
 				g.drawImage(b.getSprite(),b.getXpos(),b.getYpos(),this);
 				b.update();
 			}
-			test.drawShield(g);
+			
+			System.out.println(game.getShips().size());
+			if( game.getShips().size() <= 2){
+				System.out.println("starting new level");
+				JaceInvaders.game.newLevel(2);
+			}
+			
+			
 		}
 	}
 }

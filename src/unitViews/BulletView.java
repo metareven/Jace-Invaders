@@ -12,9 +12,9 @@ public class BulletView implements Unit{
 	private int height;
 	private int width;
 	
-	public BulletView(){
+	public BulletView(String name){
 		try {
-			this.sprite  = ImageIO.read(new File(this.getClass().getResource("../images/playermissile.png").getPath()));
+			this.sprite  = ImageIO.read(new File(this.getClass().getResource("../images/"+name+"missile.png").getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

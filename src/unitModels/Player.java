@@ -8,7 +8,7 @@ import main.JaceInvaders;
 import controllers.PlayerController;
 import unitViews.Unit;
 
-public class Player implements Ship{
+public class Player extends Ship{
 	
 	public Unit sprite;
 	public PlayerController controller;
@@ -22,7 +22,7 @@ public class Player implements Ship{
 	public Player(){
 		this.sprite = new unitViews.Player();
 		this.xPos = (JaceInvaders.Width - sprite.getWidth()) / 2;
-		this.yPos = JaceInvaders.Height - sprite.getHeight() - 50;
+		this.yPos = JaceInvaders.Height - sprite.getHeight() *2;
 		this.lives = 3;
 		this.speed = 0;
 		bullets = new ArrayList<BulletModel>();
@@ -34,7 +34,7 @@ public class Player implements Ship{
 	 */
 	public void fire() {
 		//create a bullet and fire it
-		 new BulletModel(this);
+		 new PlayerBullet(this);
 		
 	}
 	
@@ -44,6 +44,7 @@ public class Player implements Ship{
 	public void takeDamage() {
 		//take damage
 		lives = lives -1;
+		System.out.println("player was killed");
 		
 	}
 
@@ -103,10 +104,23 @@ public class Player implements Ship{
 		xPos = Math.max(0, xPos + speed);
 	}
 
-	public boolean collision(SpaceObject a, SpaceObject b) {
-		// TODO Auto-generated method stub
-		return false;
+
+	@Override
+	public int getWidth() {
+		return sprite.getWidth();
 	}
+
+	@Override
+	public int getHeight() {
+		return sprite.getHeight();
+	}
+
+	@Override
+	public void collisionReaction(SpaceObject x) {
+		takeDamage();
+		
+	}
+
 
 
 	
