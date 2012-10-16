@@ -21,13 +21,15 @@ public class JaceInvaders {
 	
 	public static int Height = 500;
 	
+	public int level = 1;
+	
 	private ArrayList<Ship> ships;
 	
 	private GameScreen gameScreen;
 	
 	public static JaceInvaders game;
 	
-	public static Ship player;
+	public static Player player;
 	
 	public static void main(String[] args) {
 		
@@ -58,6 +60,9 @@ public class JaceInvaders {
 	 */
 	public void newLevel(int i){
 		
+		level = i;
+		unitModels.Enemy.getDeadShips().addAll(JaceInvaders.game.getShips().subList(1, JaceInvaders.game.getShips().size()));
+		unitModels.Enemy.displacement = 0;
 		ships = new ArrayList<Ship>();
 		ships.add(player);
 		EnemyFactory factory = new EnemyFactory(11 * 5);

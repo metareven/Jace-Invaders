@@ -2,6 +2,7 @@ package unitModels;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 
 
@@ -9,6 +10,8 @@ public class Shield extends SpaceObject {
 
 	private int xPos;
 	private int yPos;
+	private int width = 10;
+	private int height = 10;
 	private int size = 5;
 	private boolean[][] remaining;
 	
@@ -16,7 +19,7 @@ public class Shield extends SpaceObject {
 	public Shield(int xPos,int yPos){
 		this.xPos = xPos;
 		this.yPos = yPos;
-		remaining = new boolean[10][10];
+		remaining = new boolean[width][height];
 		
 		for(int x=0;x < remaining.length; x++){
 			for(int y=0;y < remaining[x].length;y++){
@@ -48,9 +51,13 @@ public class Shield extends SpaceObject {
 	}
 
 	public void takeDamage() {
-		// TODO Auto-generated method stub
 		
 	}
+	
+	public void takeDamage(int x,int y){
+		remaining[x][y] = false;
+	}
+	
 
 	public void setXpos(int x) {
 		xPos = x;
@@ -67,20 +74,30 @@ public class Shield extends SpaceObject {
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return width * size;
 	}
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return height * size;
 	}
 
 	@Override
 	public void collisionReaction(SpaceObject x) {
-		// TODO Auto-generated method stub
-		
+		Rectangle xRect = new Rectangle(x.getXpos(),x.getYpos(),x.getWidth(),x.getHeight());
+		Rectangle tempRect = new Rectangle(size,size);
+		for(int i = 0; i < remaining.length; i++){
+			for(int j = 0; j < remaining[i].length; j++){
+				if(remaining[i][j]){
+					tempRect.x = xPos + i * size;
+					tempRect.y = yPos + j * size;
+					if(xRect.intersects(tempRect)){
+						takeDamage(i,j);
+						x.takeDamage();
+					}
+				}
+			}
+		}
 	}
 	
 

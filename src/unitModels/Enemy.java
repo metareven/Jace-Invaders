@@ -12,7 +12,7 @@ public class Enemy extends Ship {
 	private int xPos;
 	private int yPos;
 	public static int speed = 1;
-	private static int displacement = 0;
+	public static int displacement = 0;
 	private int speedThreshold = 2;
 	private Unit sprite;
 
@@ -87,8 +87,7 @@ public class Enemy extends Ship {
 		}
 		
 		if(getYpos() + getHeight() * 2 > JaceInvaders.Height){
-			getDeadShips().addAll(JaceInvaders.game.getShips().subList(1, JaceInvaders.game.getShips().size()-1));
-			displacement = 0;
+			JaceInvaders.game.newLevel(JaceInvaders.game.level);
 		}
 	}
 

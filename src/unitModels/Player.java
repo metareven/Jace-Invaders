@@ -120,7 +120,10 @@ public class Player extends Ship{
 		takeDamage();
 		
 	}
-
+	
+	public int getLives(){
+		return lives;
+	}
 
 
 	
